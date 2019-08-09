@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 export default class Create extends Component {
     constructor(props){
         super(props);
@@ -17,7 +18,10 @@ export default class Create extends Component {
     }
     onSubmit(ev){
         ev.preventDefault();
-        alert(`valores: ${this.state.nombre} ${this.state.apellidop} ${this.state.apellidom}`);
+        const datos = this.state;
+        //alert(`valores: ${this.state.nombre} ${this.state.apellidop} ${this.state.apellidom}`);
+        axios.post('http://localhost:4000/crud/add',datos)
+            .then(res=>alert('guardado'));
         this.setState({
             nombre:'',
             apellidop:'',
